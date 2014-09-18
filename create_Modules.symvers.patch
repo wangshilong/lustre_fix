@@ -1,0 +1,11 @@
+--- ofed_scripts/create_Module.symvers.sh.orig	2014-09-18 14:41:21.156307222 -0400
++++ ofed_scripts/create_Module.symvers.sh	2014-09-18 14:43:08.740306254 -0400
+@@ -54,7 +54,7 @@
+ 
+     line1=$(echo $line|cut -f1 -d:)
+     line2=$(echo $line|cut -f2 -d:)
+-    file=$(echo $line1| sed -e 's@./@@' -e 's@.ko@@' -e "s@$PWD/@@")
++    file=$(echo $line1| sed -e 's@.ko@@' -e "s@$PWD/@@")
+     crc=$(echo $line2|cut -f1 -d" ")
+     sym=$(echo $line2|cut -f3 -d" ")
+     echo -e  "0x$crc\t$sym\t$file" >> $MOD_SYMVERS
