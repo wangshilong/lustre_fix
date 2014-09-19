@@ -46,6 +46,6 @@ other configure && make steps
 Example  of configure line that points to new Mellanox IB headers:
 ./configure --with-o2ib=/usr/src/ofa_kernel --disable-server --enable-quota
 
-There is probably another Lustre issue with redefintion of CONFIG_LNET_MAX_PAYLOAD variable that might be fixed by editing config.h file and setting to the the same value as in the origial kernel file - 1048576. Check the error message in order to get location of orignal definition.
+There is probably another Lustre issue with redefintion of CONFIG_LNET_MAX_PAYLOAD variable that might be fixed by editing config.h file and setting it to the same value as in the origial kernel file - 1048576. Check the error message in order to get location of orignal definition.
 
 
