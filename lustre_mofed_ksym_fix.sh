@@ -1,12 +1,12 @@
 #!/bin/bash
 
 MLNXSYMFILE=${MLNXSYMFILE:-/usr/src/ofa_kernel/Module.symvers}
-KSYMFILE=${KSYMFILE:-/usr/src/linux-headers-3.13.0-35-generic/Module.symvers}
+KSYMFILE=${KSYMFILE:-/usr/src/linux-headers-`uname -r`/Module.symvers}
 
 #Original kernel file should be replaced with this one
 TARGET=/tmp/Module.symvers.new
 TMPFILE=`mktemp /tmp/Module.symvers.XXXXXX`
-DIFFFILE=$HOME/tmp/Module.symvers.add
+DIFFFILE=/tmp/Module.symvers.add
 
 CLEANFILE=`mktemp /tmp/ba.XXXXXX`
 
