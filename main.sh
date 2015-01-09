@@ -13,7 +13,7 @@ function generate_missing_include_file
 		#we need generate autocomapt.h file
 		cp ./create_Modules.symvers.patch /usr/src/ofa_kernel/ofed_scripts || __fail "cp failed"
 		pushd /usr/src/ofa_kernel/ofed_scripts || __fail "pushd failed"
-		patch -p1  < ./create_Modules.symvers.patch || __fail "failed to apply patch"
+		# patch -p1  < ./create_Modules.symvers.patch || __fail "failed to apply patch"
 		popd
 	fi
 
@@ -25,7 +25,7 @@ function generate_missing_include_file
 		popd
 	fi
 	#please use that one whatever
-	cp /var/lib/dkms/mlnx-ofed-kernel/2.3/build/Module.symvers /usr/src/ofa_kernel/Module.symvers || __fail "copy Module.symvers failed"
+	#cp /var/lib/dkms/mlnx-ofed-kernel/2.3/build/Module.symvers /usr/src/ofa_kernel/Module.symvers || __fail "copy Module.symvers failed"
 }
 
 function replace_symbol()
@@ -40,6 +40,13 @@ function replace_symbol()
 	cp /tmp/Module.symvers.new /usr/src/linux-headers-`uname -r`/Module.symvers
 }
 
+function cleanup_before()
+{
+	rm -f /usr/src/ofa_kernel/include/linux/compat_autoconf.h
+	cp /usr/src/linux-headers-`uname -r`/Module.symvers.orig /usr/src/linux-headers-`uname -r`/Module.symvers
+	rm /usr/src/linux-headers-`uname -r`/Module.symvers.orig -f
+}
+cleanup_before
 generate_missing_include_file
 replace_symbol
 echo "Success!!!"
